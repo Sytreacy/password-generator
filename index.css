@@ -62,6 +62,11 @@ h1 {
   font-size: 0.9em;
 }
 
+.generate-pw-btn:hover {
+  background-color: var(--brightgreen);
+  color: #064E3B;
+}
+
 .grey-clr {
   color: var(--lightgrey);
 }
@@ -84,4 +89,10 @@ hr {
 .pw-container {
   display: flex;
   gap: 1.5em;
+}
+
+.copy-success {
+  padding-top: 1em;
+  text-align: center;
+  color: #FCD34D;
 }
