@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Password Generator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,23 +12,31 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="container">
-      <h1 class="heading-font">
+    <div class="d-flex container">
+      <h1 class="d-flex heading-font">
         Generate a <span class="lightgreen">random password</span>
       </h1>
       <p class="grey-clr">Never use an insecure password again.</p>
+      <div class="d-flex pwd-length-container">
+        <p class="white-clr">Password Length</p>
+        <div class="pwd-length-input-container">
+          <!-- <span class="arrows left-arrow"><</span> -->
+          <input type="number" id="pwd-length" min="4" max="20" value="15" />
+          <!-- <span class="arrows right-arrow">></span> -->
+        </div>
+      </div>
       <button id="generate-pwd" class="green-btn generate-pw-btn">
         Generate passwords
       </button>
       <hr />
       <div class="pw-container">
         <div class="pw-box-container">
-          <div class="pw-box">
+          <div class="pw-box d-flex">
             <p class="password-1"></p>
           </div>
         </div>
         <div class="pw-box-container">
-          <div class="pw-box">
+          <div class="pw-box d-flex">
             <p class="password-2"></p>
           </div>
         </div>

@@ -1,5 +1,4 @@
 //stretch goals
-//ability to set password length
 //toggle "symbols" and "numbers" on/off
 
 const characters = [
@@ -96,14 +95,21 @@ const characters = [
   "/",
 ];
 
+let pwdLength = document.getElementById("pwd-length").value;
 function randomResult() {
   let randomNo = Math.floor(Math.random() * characters.length);
   return characters[randomNo];
 }
 
+//pwd length changing or not? before generating pwd
+document.getElementById("pwd-length").addEventListener("input", () => {
+  pwdLength = document.getElementById("pwd-length").value;
+});
+
 function generatePwd() {
   let pwd = "";
-  for (let i = 0; i < 15; i++) {
+
+  for (let i = 0; i < pwdLength; i++) {
     pwd += randomResult();
   }
   return pwd;
@@ -143,3 +149,57 @@ function copySuccess(event) {
     }, 1000);
   }
 }
+
+//prevent all other characters except "Enter, Backspace and all numbers [0-9]"
+let pwdInput = document.getElementById("pwd-length");
+pwdInput.defaultValue = 15;
+let min = 4;
+let max = 20;
+
+pwdInput.addEventListener("keypress", ({ key, preventDefault }) => {
+  if (isNaN(parseInt(key, 10)) && !["Backspace", "Enter"].includes(key)) {
+    event.preventDefault();
+  }
+});
+
+//remove arrows
+// let removeOnce = setInterval(removeArrows, 500);
+
+// function removeArrows() {
+//   if (pwdInput.value > min && pwdInput.value < max) {
+//     checkInputValueAndAddArrows();
+//   } else if (pwdInput.value >= max) {
+//     document.getElementsByClassName("right-arrow")[0].remove();
+//     clearInterval(removeOnce);
+//   } else if (pwdInput.value <= min) {
+//     document.getElementsByClassName("left-arrow")[0].remove();
+//     clearInterval(removeOnce);
+//   }
+// }
+
+// let parentInputDiv = document.getElementsByClassName(
+//   "pwd-length-input-container"
+// )[0];
+
+// function addLeftArrow() {
+//   let leftArrow = document.createElement("span");
+//   parentInputDiv.appendChild(leftArrow);
+//   leftArrow[0].classList.add("arrows left-arrow");
+//   leftArrow.textContent = "<";
+// }
+
+// function addRightArrow() {
+//   let rightArrow = document.createElement("span");
+//   parentInputDiv.appendChild(rightArrow);
+//   rightArrow[0].classList.add("arrows right-arrow");
+//   rightArrow.textContent = ">";
+// }
+
+// function checkInputValueAndAddArrows() {
+//   if (document.getElementsByClassName("right-arrow").length !== 1) {
+//     addRightArrow();
+//   }
+//   if (document.getElementsByClassName("left-arrow").length !== 1) {
+//     addLeftArrow();
+//   }
+// }
