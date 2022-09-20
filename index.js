@@ -103,7 +103,13 @@ function randomResult() {
 
 //pwd length changing or not? before generating pwd
 document.getElementById("pwd-length").addEventListener("input", () => {
-  pwdLength = document.getElementById("pwd-length").value;
+  if (pwdLength <= 20 || pwdLength.length <= 2) {
+    pwdLength = document.getElementById("pwd-length").value;
+  }
+  if (pwdLength > 20 || pwdLength.length > 2) {
+    document.getElementById("pwd-length").value = 20; // if any larger value than 20 is set, change to 20 in input box
+    pwdLength = 20; // set 20 value for length to execute in generatePwd()
+  }
 });
 
 function generatePwd() {
@@ -150,14 +156,14 @@ function copySuccess(event) {
   }
 }
 
-//prevent all other characters except "Enter, Backspace and all numbers [0-9]"
+//prevent all other characters except "Enter, Backspace (["Backspace", "Enter"]) and all numbers [0-9]"
 let pwdInput = document.getElementById("pwd-length");
 pwdInput.defaultValue = 15;
 let min = 4;
 let max = 20;
 
 pwdInput.addEventListener("keypress", ({ key, preventDefault }) => {
-  if (isNaN(parseInt(key, 10)) && !["Backspace", "Enter"].includes(key)) {
+  if (isNaN(parseInt(key, 10)) && !["Enter"].includes(key)) {
     event.preventDefault();
   }
 });
